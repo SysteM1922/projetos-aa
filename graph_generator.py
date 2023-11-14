@@ -2,13 +2,14 @@ import random
 import networkx as nx
 import matplotlib.pyplot as plt
 from argparse import ArgumentParser
+import os
 
 NMEC = 103600
 
 random.seed(NMEC)
 
 def generate_random_graph(num_vertices, p):
-    G = nx.fast_gnp_random_graph(num_vertices, p, seed=NMEC, directed=False)
+    G = nx.gnp_random_graph(num_vertices, p, seed=NMEC, directed=False)
     for (u, v) in G.edges():
         G[u][v]['weight'] = random.randint(1, 100)
         
@@ -52,6 +53,8 @@ if __name__ == '__main__':
             for p in percentage:
                 G=generate_random_graph(num_vertices, p)
                 if args.save:
+                    if not os.path.exists('graphs'):
+                        os.makedirs('graphs')
                     save_graph(G, f'graph_{num_vertices}_{p}')
 
 

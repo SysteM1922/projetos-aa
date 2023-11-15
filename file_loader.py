@@ -22,10 +22,28 @@ def write_file(file_name, data):
 
 if __name__ == '__main__':
     
-    lst = load_file('results/results_sg3.csv')
+    data_es = load_file('results/results_es.csv')
+    data_gs = load_file('results/results_gs.csv')
+    data_sg3 = load_file('results/results_sg3.csv')
 
+    # plot a graphic with the number of basic operations with one line for each algorithm
+    plt.figure()
+    plt.title('Number of basic operations vs Number of vertices')
+    plt.xlabel('Number of vertices')
+    plt.ylabel('Number of basic operations')
+    plt.grid(True)
+    plt.yscale('log')
+    plt.plot([i[0] for i in data_es], [i[5] for i in data_es], label='Exhaustive')
+    plt.plot([i[0] for i in data_gs], [i[5] for i in data_gs], label='Greedy Simple')
+    plt.plot([i[0] for i in data_sg3], [i[5] for i in data_sg3], label='Greedy SG3')
+    plt.legend()
+    plt.savefig('operations_x_vertices.png')
+    plt.show()
+    plt.clf()
+    
+    """
     percentage = [0.125, 0.25, 0.5, 0.75]
-
+    
     # plot a graphic with the vertices and the time with one line for each density
     plt.figure()
     plt.title('Time taken vs Number of vertices')
@@ -65,7 +83,7 @@ if __name__ == '__main__':
     plt.savefig('operations_x_vertices.png')
     plt.show()
     plt.clf()
-    """
+    
     # plot a graphic per density with the max_cut_weight per vertice of each algorithm with one line for each algorithm
     for p in percentage:
         plt.title(f'Max cut weight vs Number of vertices for edge ratio {p}')

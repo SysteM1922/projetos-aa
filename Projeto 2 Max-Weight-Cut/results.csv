@@ -1,0 +1,2 @@
+num_vertices,edge_ratio,elapsed_time,weight,n_sol,n_oper,n_iter
+10000,0,61.556691400008276,499.43429,9998,100009995,9998

@@ -9,7 +9,6 @@ def exhaustive_search(G):
     nodes = G.nodes
     n = G.number_of_nodes()
     max_cut_weight = 0
-    max_cut = None
 
     n_sol = 0
     n_oper = 0
@@ -24,7 +23,6 @@ def exhaustive_search(G):
             n_oper += 1
             if cut_weight > max_cut_weight:
                 max_cut_weight = cut_weight
-                max_cut = subset
             n_sol += 1
 
     return max_cut_weight, n_sol, n_oper
